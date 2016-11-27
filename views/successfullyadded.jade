@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-3
+				#notification.jumbotron
+					hr.my-2
+					p.lead
+						a(href='/', title='На главную') 
+							i.fa.fa-home(aria-hidden='true')
+							|&nbsp;
+							|На главную
+					p.lead
+						a(href='/contracts', title='Все договоры') 
+							i.fa.fa-list(aria-hidden='true')
+							|&nbsp;
+							|Все договоры
+			.col-sm-8
+				#notification.jumbotron
+					hr.my-2
+					p.lead
+						i.fa.fa-check-circle-o.green(aria-hidden='true')
+						| &nbsp;&nbsp;&nbsp;#{key}
+			.col-sm-1
+	include footer

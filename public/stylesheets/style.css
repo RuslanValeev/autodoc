@@ -1,0 +1,46 @@
+body {
+  padding: 50px;
+}
+
+body .inputdata {
+  padding: 2em 0em 1em 0em;
+}
+body label {
+  font-size: 1em;
+  /*font-weight: bold;*/
+  /*text-align: right;*/
+}
+h1#alldata {
+  padding: 0em 0em 1em 0em;
+}
+
+body .addts {
+  margin: 0em 0em 2em 0em;
+}
+#name-1 {
+  margin-bottom:2em;
+}
+#container .jumbotron {
+  padding: 2em 3em 1em 3em;
+}
+
+#ok {
+  margin-top: 1em;
+}
+#container .number {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+#requisites .jumbotron{
+  padding: 2em 3em 1em 3em;
+}
+#notification {
+  padding: 1em 1em 1em 1em;
+}
+td.center {
+  text-align: center;
+  vertical-align: middle;
+}
+i.green {
+  color: green;
+}

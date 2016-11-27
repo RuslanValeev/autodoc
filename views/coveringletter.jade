@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	.container
+		h1#alldata.display-4 Скачать
+		.row
+			.col-sm-3
+			.col-sm-4
+				#notification.jumbotron
+					a.tablinks(href=firstlink)
+						i.fa.fa-download.center(aria-hidden='true')
+						| &nbsp;&nbsp;&nbsp;
+						= title1
+			.col-sm-2
+			.col-sm-3
+	include footer

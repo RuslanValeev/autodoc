@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	.container
+		h1#alldata.display-4 Скачать
+		.row
+			.col-sm-3
+			.col-sm-3
+				#notification.jumbotron
+					a.tablinks(href=firstlink)
+						i.fa.fa-download.center(aria-hidden='true')
+						| &nbsp;&nbsp;&nbsp;
+						= title1
+			.col-sm-3
+				each url, i in secondlink
+					//- i=i+1
+					#notification.jumbotron.center
+						a.tablinks(href=url)
+							i.fa.fa-download.center(aria-hidden='true')
+							| &nbsp;&nbsp;&nbsp;
+							= title2 + ' ' + (i+1)
+			.col-sm-3
+	include footer

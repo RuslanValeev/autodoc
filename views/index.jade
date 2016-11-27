@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-4
+				.jumbotron
+					h3.display-5 Физическое лицо
+					hr.my-2
+					p
+						| Введите данные и система добавит их в базу данных.
+					p.lead
+						a.btn.btn-primary.btn-lg(href='/individual', role='button') Добавить
+			.col-sm-4
+				.jumbotron
+					h3.display-5 Юридическое лицо
+					hr.my-2
+					p
+						| Введите данные и система добавит их в базу данных.
+					p.lead
+						a.btn.btn-primary.btn-lg(href='/legalentity', role='button') Добавить
+			.col-sm-4
+				.jumbotron
+					h3.display-5 Все договоры
+					hr.my-2
+					p
+						| Показать все договоры, находящиеся в базе данных.
+					p.lead
+						a.btn.btn-primary.btn-lg(href='/contracts', role='button') Показать
+	include footer

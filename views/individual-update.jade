@@ -1,0 +1,243 @@
+extends layout
+
+block content
+	.container
+		form(method='post', action='/update')
+			h1.display-4 Физическое лицо
+			h3.display-5.inputdata Введите данные:
+			input(type='hidden', name='formtype', value='Физ. лицо')
+			input(type='hidden', name='id', value='#{indcontract._id}')
+			.form-group.row
+				label.col-xs-4.col-form-label(for='date-1') Дата заключения договора аренды
+				.col-xs-8
+					input#date-1.form-control(type='text', name='date', placeholder='Введите дату заключения договора аренды' value='#{indcontract.date}')
+			.form-group.row
+				label.col-xs-4.col-form-label(for='name-1') ФИО собственника ТС
+				.col-xs-8
+					input#name-1.form-control(type='text', name='name', placeholder='Введите ФИО собственника ТС' value='#{indcontract.name}')
+
+			#container
+				each transport, i in indcontract.transport
+					.jumbotron
+						.number
+						.form-group.row
+							label.col-xs-4.col-form-label(for='type' + i) Тип ТС
+							.col-xs-8
+								input.form-control(id = 'type' + i, type='text', name='type' + i, placeholder='Введите Тип ТС' value='#{transport.type}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='markmodel' + i) Марка + модель
+							.col-xs-8
+								input.form-control(id = 'markmodel' + i, type='text', name='markmodel' + i, placeholder='Введите марку + модель ТС' value='#{transport.markmodel}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='carlicenseplate' + i) Государственный номер
+							.col-xs-8
+								input.form-control(id='carlicenseplate' + i, type='text', name='carlicenseplate' + i, placeholder='Введите государственный номер' value='#{transport.carlicenseplate}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='year' + i) Год выпуска
+							.col-xs-8
+								input.form-control(id='year' + i, type='text', name='year' + i, placeholder='Введите год выпуска' value='#{transport.year}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='distbetweenaxes' + i) Расстояние между осями
+							.col-xs-8
+								input.form-control(id='distbetweenaxes' + i, type='text', name='distbetweenaxes' + i, placeholder='Введите расстояние между осями', value='#{transport.distbetweenaxes}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='axleloads' + i) Нагрузка на оси
+							.col-xs-8
+								input.form-control(id='axleloads' + i, type='text', name='axleloads' + i, placeholder='Введите значение нагрузки на оси', value='#{transport.axleloads}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='fullmass' + i) Полная масса
+							.col-xs-8
+								input.form-control(id='fullmass' + i, type='text', name='fullmass' + i, placeholder='Введите значение полной массы ТС', value='#{transport.fullmass}')
+						.form-group.row
+							label.col-xs-4.col-form-label(for='dimensions' + i) Габариты
+							.col-xs-8
+								input.form-control(id='dimensions' + i, type='text', name='dimensions' + i, placeholder='Введите значение габаритов ТС', value='#{transport.dimensions}')
+			button#more_fields.btn.btn-primary.addts(type='button', aria-label='Left Align', onclick='add_fields();')
+				i.fa.fa-plus(aria-hidden='true')
+					| &nbsp;&nbsp;&nbsp;Добавить ТС
+
+			.form-group.row
+				label.col-xs-4.col-form-label(for='registration-1') Прописка собственника
+				.col-xs-8
+					input#registration-1.form-control(type='text', name='registration', placeholder='Введите прописку собственника' value='#{indcontract.registration}')
+			.form-group.row
+				label.col-xs-4.col-form-label(for='kindofpass-1') Вид необходимого пропуска
+				.col-xs-8
+					input#kindofpass-1.form-control(type='text', name='kindofpass', placeholder='Введите вид необходимого пропуска' value='#{indcontract.kindofpass}')
+			.form-group.row
+				label.col-xs-4.col-form-label(for='chofthegoods-1') Характеристика груза
+				.col-xs-8
+					input#chofthegoods-1.form-control(type='text', name='chofthegoods', placeholder='Введите харкатеристику груза' value='#{indcontract.chofthegoods}')
+			.form-group.row
+				.col-xs-5
+				.col-xs-4
+					input#ok(type='submit' value='Обновить' class='btn btn-success btn-xs')
+				.col-xs-3
+
+			script.
+				function add_fields() { //rewrite this code
+					var number = document.getElementsByClassName("number");
+					var container = document.getElementById("container");
+
+					var jumbotron = document.createElement("div");
+					jumbotron.setAttribute("class", "jumbotron");
+
+					var objnumber = document.createElement("div");
+					objnumber.setAttribute("class", "number");
+					//- objnumber.innerHTML = number.length + 1;
+					jumbotron.appendChild(objnumber);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label1 = document.createElement("label");
+					label1.setAttribute("for", "type" + number.length);
+					label1.innerHTML = "Тип ТС";
+					label1.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label1);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input1 = document.createElement("input");
+					input1.setAttribute("type", "text");
+					input1.setAttribute("id", "type" + number.length);
+					input1.setAttribute("name", "type" + number.length);
+					input1.setAttribute("class", "form-control");
+					input1.setAttribute("placeholder", "Введите Тип ТС");
+					col.appendChild(input1);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label2 = document.createElement("label");
+					label2.setAttribute("for", "markmodel" + number.length);
+					label2.innerHTML = "Марка + модель";
+					label2.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label2);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input2 = document.createElement("input");
+					input2.setAttribute("type", "text");
+					input2.setAttribute("id", "markmodel" + number.length);
+					input2.setAttribute("name", "markmodel" + number.length);
+					input2.setAttribute("class", "form-control");
+					input2.setAttribute("placeholder", "Введите марку + модель ТС");
+					col.appendChild(input2);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label3 = document.createElement("label");
+					label3.setAttribute("for", "carlicenseplate" + number.length);
+					label3.innerHTML = "Государственный номер";
+					label3.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label3);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input3 = document.createElement("input");
+					input3.setAttribute("type", "text");
+					input3.setAttribute("id", "carlicenseplate" + number.length);
+					input3.setAttribute("name", "carlicenseplate" + number.length);
+					input3.setAttribute("class", "form-control");
+					input3.setAttribute("placeholder", "Введите государственный номер");
+					col.appendChild(input3);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+					
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label4 = document.createElement("label");
+					label4.setAttribute("for", "year" + number.length);
+					label4.innerHTML = "Год выпуска";
+					label4.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label4);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input4 = document.createElement("input");
+					input4.setAttribute("type", "text");
+					input4.setAttribute("id", "year" + number.length);
+					input4.setAttribute("name", "year" + number.length);
+					input4.setAttribute("class", "form-control");
+					input4.setAttribute("placeholder", "Введите год выпуска");
+					col.appendChild(input4);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label5 = document.createElement("label");
+					label5.setAttribute("for", "distbetweenaxes" + number.length);
+					label5.innerHTML = "Расстояние между осями";
+					label5.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label5);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input5 = document.createElement("input");
+					input5.setAttribute("type", "text");
+					input5.setAttribute("id", "distbetweenaxes" + number.length);
+					input5.setAttribute("name", "distbetweenaxes" + number.length);
+					input5.setAttribute("class", "form-control");
+					input5.setAttribute("placeholder", "Введите расстояние между осями");
+					col.appendChild(input5);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label6 = document.createElement("label");
+					label6.setAttribute("for", "axleloads" + number.length);
+					label6.innerHTML = "Нагрузка на оси";
+					label6.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label6);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input6 = document.createElement("input");
+					input6.setAttribute("type", "text");
+					input6.setAttribute("id", "axleloads" + number.length);
+					input6.setAttribute("name", "axleloads" + number.length);
+					input6.setAttribute("class", "form-control");
+					input6.setAttribute("placeholder", "Введите значение нагрузки на оси");
+					col.appendChild(input6);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label7 = document.createElement("label");
+					label7.setAttribute("for", "fullmass" + number.length);
+					label7.innerHTML = "Полная масса";
+					label7.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label7);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input7 = document.createElement("input");
+					input7.setAttribute("type", "text");
+					input7.setAttribute("id", "fullmass" + number.length);
+					input7.setAttribute("name", "fullmass" + number.length);
+					input7.setAttribute("class", "form-control");
+					input7.setAttribute("placeholder", "Введите значение полной массы ТС");
+					col.appendChild(input7);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+
+					var grouprow = document.createElement("div");
+					grouprow.setAttribute("class", "form-group row");
+					var label8 = document.createElement("label");
+					label8.setAttribute("for", "dimensions" + number.length);
+					label8.innerHTML = "Габариты";
+					label8.setAttribute("class","col-xs-4 col-form-label");
+					grouprow.appendChild(label8);
+					var col = document.createElement("div");
+					col.setAttribute("class", "col-xs-8");
+					var input8 = document.createElement("input");
+					input8.setAttribute("type", "text");
+					input8.setAttribute("id", "dimensions" + number.length);
+					input8.setAttribute("name", "dimensions" + number.length);
+					input8.setAttribute("class", "form-control");
+					input8.setAttribute("placeholder", "Введите значение габаритов ТС");
+					col.appendChild(input8);
+					grouprow.appendChild(col);
+					jumbotron.appendChild(grouprow);
+					container.appendChild(jumbotron);
+				}
+	include footer

@@ -1,0 +1,65 @@
+extends layout
+
+block content
+	.container
+		h1#alldata.display-4 Договоры
+		if (indcontract.length == 0 && legalcontracts.length == 0)
+				p Заполненные договоры отсутствуют
+			else
+			form(action='/coveringletter' method='POST')
+				table.table.table-bordered.table-hover
+					thead
+						tr
+							th
+							th №
+							th Тип договора
+							th Дата
+							th ФИО / Компания
+							th Кол-во ТС
+							th &nbsp;
+					- var count = 1
+					each contract, i in indcontract
+						tr
+							td.center 
+								input(type='checkbox' name="checkbox" value='i#{contract._id}')
+							td #{count}
+							- count = count + 1
+							td #{contract.formtype}
+							td #{contract.date}
+							td #{contract.name}
+							td #{contract.transport.length}
+							td.center
+								a(href='/individual/edit?id=#{contract._id}', title='Редактировать') 
+									i.fa.fa-pencil-square-o(aria-hidden='true')
+								| &nbsp;&nbsp;&nbsp;
+								a(href='/individual/download?id=#{contract._id}', title='Сохранить') 
+									i.fa.fa-floppy-o(aria-hidden='true')
+								| &nbsp;&nbsp;&nbsp;
+								a(href='/individual/remove?id=#{contract._id}', title='Удалить') 
+									i.fa.fa-trash(aria-hidden='true')
+					each contract, i in legalcontracts
+						tr
+							td.center
+								input(type='checkbox' name="checkbox" value='l#{contract._id}')
+							td #{count}
+							- count = count + 1
+							td #{contract.formtype}
+							td #{contract.date}
+							td #{contract.company}
+							td #{contract.transport.length}
+							td.center
+								a(href='/legalentity/edit?id=#{contract._id}', title='Редактировать') 
+									i.fa.fa-pencil-square-o(aria-hidden='true')
+								| &nbsp;&nbsp;&nbsp;
+								a(href='/legalentity/download?id=#{contract._id}', title='Сохранить') 
+									i.fa.fa-floppy-o(aria-hidden='true')
+								| &nbsp;&nbsp;&nbsp;
+								a(href='/legalentity/remove?id=#{contract._id}', title='Удалить') 
+									i.fa.fa-trash(aria-hidden='true')
+				.form-group.row
+					label.col-xs-1.col-form-label(for='numb') Исх.№:
+					.col-xs-3
+						input#numb.form-control(type='text', name='number', placeholder='Введите Исх.№')
+					.col-xs-8
+				input#ok(type='submit' value='Сформировать сопр. письмо' class='btn btn-success btn-xs')
+	include footer
