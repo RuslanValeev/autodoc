@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	.container-fluid
+		.row
+			.col-sm-12
+				form#uploadForm(enctype='multipart/form-data', action='/newtemplates/add', method='post')
+					label(for='doc1') Договор аренды физического лица:&nbsp;
+					input(type='file', name='doc1')
+					br
+					label(for='doc2') Договор аренды юридического лица:&nbsp;
+					input(type='file', name='doc2')
+					br
+					label(for='doc3') Заявление:&nbsp;
+					input(type='file', name='doc3')
+					br
+					label(for='doc4') Сопроводительное письмо:&nbsp;
+					input(type='file', name='doc4')
+					br
+					input(type='submit', value='Обновить', name='submit')
+	include footer

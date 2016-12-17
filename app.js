@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-
 var index = require('./routes/index');
 var individual = require('./routes/individual');
 var legalentity = require('./routes/legalentity');
@@ -15,9 +14,7 @@ var added = require('./routes/added');
 var update = require('./routes/update');
 var remove = require('./routes/remove');
 var coveringletter = require('./routes/coveringletter');
-
-
-
+var newtemplates = require('./routes/newtemplates');
 
 var app = express();
 
@@ -41,11 +38,10 @@ app.use('/added', added);
 app.use('/update', update);
 app.use('/remove', remove);
 app.use('/coveringletter', coveringletter);
-
+app.use('/newtemplates', newtemplates);
 
 // mongoose
 mongoose.connect('mongodb://localhost/dbautodoc');
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -77,6 +73,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

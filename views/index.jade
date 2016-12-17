@@ -1,11 +1,11 @@
 extends layout
 
 block content
-	.container
+	.container-fluid
 		.row
 			.col-sm-4
 				.jumbotron
-					h3.display-5 Физическое лицо
+					h3.display-5 Договор физического лица
 					hr.my-2
 					p
 						| Введите данные и система добавит их в базу данных.
@@ -13,7 +13,7 @@ block content
 						a.btn.btn-primary.btn-lg(href='/individual', role='button') Добавить
 			.col-sm-4
 				.jumbotron
-					h3.display-5 Юридическое лицо
+					h3.display-5 Договор юридическое лица
 					hr.my-2
 					p
 						| Введите данные и система добавит их в базу данных.
@@ -27,4 +27,13 @@ block content
 						| Показать все договоры, находящиеся в базе данных.
 					p.lead
 						a.btn.btn-primary.btn-lg(href='/contracts', role='button') Показать
+		.row
+			.col-sm-4
+				.jumbotron
+					h3.display-5 Загрузить шаблоны
+					hr.my-2
+					p
+						| Добавьте шаблоны договоров, заявления и сопроводительного письма
+					p.lead
+						a.btn.btn-primary.btn-lg(href='/newtemplates', role='button') Загрузить
 	include footer

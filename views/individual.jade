@@ -16,7 +16,7 @@ block content
 					input#name-1.form-control(type='text', name='name', placeholder='Введите ФИО собственника ТС')
 
 			#container
-				.jumbotron
+				#jumb.jumbotron
 					.number
 					.form-group.row
 						label.col-xs-4.col-form-label(for='type0') Тип ТС
@@ -50,7 +50,10 @@ block content
 						label.col-xs-4.col-form-label(for='dimensions0') Габариты
 						.col-xs-8
 							input#dimensions0.form-control(type='text', name='dimensions0', placeholder='Введите значение габаритов ТС')
-			button#more_fields.btn.btn-primary.addts(type='button', aria-label='Left Align', onclick='add_fields();')
+					button#more_fields.btn.btn-secondary(type='button', aria-label='Left Align', onclick='add_trailer();')
+						i.fa.fa-plus(aria-hidden='true')
+							| &nbsp;&nbsp;&nbsp;Добавить прицеп
+			button#more_fields.btn.btn-primary.addts(type='button', aria-label='Left Align', onclick='add_forms();')
 				i.fa.fa-plus(aria-hidden='true')
 					| &nbsp;&nbsp;&nbsp;Добавить ТС
 
@@ -73,9 +76,9 @@ block content
 				.col-xs-3
 
 			script.
-				function add_fields() { //rewrite this code
+				function add_trailer() { //rewrite this code
 					var number = document.getElementsByClassName("number");
-					var container = document.getElementById("container");
+					var container = document.getElementById("jumb");
 
 					var jumbotron = document.createElement("div");
 					jumbotron.setAttribute("class", "jumbotron");
@@ -236,6 +239,209 @@ block content
 					col.appendChild(input8);
 					grouprow.appendChild(col);
 					jumbotron.appendChild(grouprow);
+					container.appendChild(jumbotron);
+				}
+
+				function add_fields(number, jumbotron, fields) {
+					for (var prop in fields) {
+						console.log("obj." + prop + " = " + fields[prop]);
+					}
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label1 = document.createElement("label");
+					//- label1.setAttribute("for", "type" + number.length);
+					//- label1.innerHTML = "Тип ТС";
+					//- label1.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label1);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input1 = document.createElement("input");
+					//- input1.setAttribute("type", "text");
+					//- input1.setAttribute("id", "type" + number.length);
+					//- input1.setAttribute("name", "type" + number.length);
+					//- input1.setAttribute("class", "form-control");
+					//- input1.setAttribute("placeholder", "Введите Тип ТС");
+					//- col.appendChild(input1);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+					return jumbotron;
+				}
+
+				function add_forms() { //rewrite this code
+					var number = document.getElementsByClassName("number");
+					var container = document.getElementById("container");
+					
+					var jumbotron = document.createElement("div");
+					jumbotron.setAttribute("class", "jumbotron");
+
+					var objnumber = document.createElement("div");
+					objnumber.setAttribute("class", "number");
+					//- objnumber.innerHTML = number.length + 1;
+					jumbotron.appendChild(objnumber);
+
+					fields = [{for:'type', label: 'Тип ТС', placeholder: 'Введите Тип ТС'},
+									{for:'markmodel', label: 'Марка + модель', placeholder: 'Введите марку + модель ТС'},
+									{for:'carlicenseplate', label: 'Государственный номер', placeholder: 'Введите государственный номер'},
+									{for:'year', label: 'Год выпуска', placeholder: 'Введите год выпуска'},
+									{for:'distbetweenaxes', label: 'Расстояние между осями', placeholder: 'Введите расстояние между осями'},
+									{for:'axleloads', label: 'Нагрузка на оси', placeholder: 'Введите значение нагрузки на оси'},
+									{for:'fullmass', label: 'Полная масса', placeholder: 'Введите значение полной массы ТС'},
+									{for:'dimensions', label: 'Габариты', placeholder: 'Введите значение габаритов ТС'}];
+
+					jumbotron = add_fields(number, jumbotron, fields);
+					
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label1 = document.createElement("label");
+					//- label1.setAttribute("for", "type" + number.length);
+					//- label1.innerHTML = "Тип ТС";
+					//- label1.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label1);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input1 = document.createElement("input");
+					//- input1.setAttribute("type", "text");
+					//- input1.setAttribute("id", "type" + number.length);
+					//- input1.setAttribute("name", "type" + number.length);
+					//- input1.setAttribute("class", "form-control");
+					//- input1.setAttribute("placeholder", "Введите Тип ТС");
+					//- col.appendChild(input1);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label2 = document.createElement("label");
+					//- label2.setAttribute("for", "markmodel" + number.length);
+					//- label2.innerHTML = "Марка + модель";
+					//- label2.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label2);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input2 = document.createElement("input");
+					//- input2.setAttribute("type", "text");
+					//- input2.setAttribute("id", "markmodel" + number.length);
+					//- input2.setAttribute("name", "markmodel" + number.length);
+					//- input2.setAttribute("class", "form-control");
+					//- input2.setAttribute("placeholder", "Введите марку + модель ТС");
+					//- col.appendChild(input2);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label3 = document.createElement("label");
+					//- label3.setAttribute("for", "carlicenseplate" + number.length);
+					//- label3.innerHTML = "Государственный номер";
+					//- label3.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label3);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input3 = document.createElement("input");
+					//- input3.setAttribute("type", "text");
+					//- input3.setAttribute("id", "carlicenseplate" + number.length);
+					//- input3.setAttribute("name", "carlicenseplate" + number.length);
+					//- input3.setAttribute("class", "form-control");
+					//- input3.setAttribute("placeholder", "Введите государственный номер");
+					//- col.appendChild(input3);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+					
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label4 = document.createElement("label");
+					//- label4.setAttribute("for", "year" + number.length);
+					//- label4.innerHTML = "Год выпуска";
+					//- label4.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label4);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input4 = document.createElement("input");
+					//- input4.setAttribute("type", "text");
+					//- input4.setAttribute("id", "year" + number.length);
+					//- input4.setAttribute("name", "year" + number.length);
+					//- input4.setAttribute("class", "form-control");
+					//- input4.setAttribute("placeholder", "Введите год выпуска");
+					//- col.appendChild(input4);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label5 = document.createElement("label");
+					//- label5.setAttribute("for", "distbetweenaxes" + number.length);
+					//- label5.innerHTML = "Расстояние между осями";
+					//- label5.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label5);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input5 = document.createElement("input");
+					//- input5.setAttribute("type", "text");
+					//- input5.setAttribute("id", "distbetweenaxes" + number.length);
+					//- input5.setAttribute("name", "distbetweenaxes" + number.length);
+					//- input5.setAttribute("class", "form-control");
+					//- input5.setAttribute("placeholder", "Введите расстояние между осями");
+					//- col.appendChild(input5);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label6 = document.createElement("label");
+					//- label6.setAttribute("for", "axleloads" + number.length);
+					//- label6.innerHTML = "Нагрузка на оси";
+					//- label6.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label6);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input6 = document.createElement("input");
+					//- input6.setAttribute("type", "text");
+					//- input6.setAttribute("id", "axleloads" + number.length);
+					//- input6.setAttribute("name", "axleloads" + number.length);
+					//- input6.setAttribute("class", "form-control");
+					//- input6.setAttribute("placeholder", "Введите значение нагрузки на оси");
+					//- col.appendChild(input6);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label7 = document.createElement("label");
+					//- label7.setAttribute("for", "fullmass" + number.length);
+					//- label7.innerHTML = "Полная масса";
+					//- label7.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label7);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input7 = document.createElement("input");
+					//- input7.setAttribute("type", "text");
+					//- input7.setAttribute("id", "fullmass" + number.length);
+					//- input7.setAttribute("name", "fullmass" + number.length);
+					//- input7.setAttribute("class", "form-control");
+					//- input7.setAttribute("placeholder", "Введите значение полной массы ТС");
+					//- col.appendChild(input7);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
+					//- var grouprow = document.createElement("div");
+					//- grouprow.setAttribute("class", "form-group row");
+					//- var label8 = document.createElement("label");
+					//- label8.setAttribute("for", "dimensions" + number.length);
+					//- label8.innerHTML = "Габариты";
+					//- label8.setAttribute("class","col-xs-4 col-form-label");
+					//- grouprow.appendChild(label8);
+					//- var col = document.createElement("div");
+					//- col.setAttribute("class", "col-xs-8");
+					//- var input8 = document.createElement("input");
+					//- input8.setAttribute("type", "text");
+					//- input8.setAttribute("id", "dimensions" + number.length);
+					//- input8.setAttribute("name", "dimensions" + number.length);
+					//- input8.setAttribute("class", "form-control");
+					//- input8.setAttribute("placeholder", "Введите значение габаритов ТС");
+					//- col.appendChild(input8);
+					//- grouprow.appendChild(col);
+					//- jumbotron.appendChild(grouprow);
+
 					container.appendChild(jumbotron);
 				}
 	include footer
